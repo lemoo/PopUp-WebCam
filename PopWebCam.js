@@ -1,12 +1,8 @@
 function doc_keyUp(e) {
-
-    // this would test for whichever key is 40 (down arrow) and the ctrl key at the same time
     if (e.ctrlKey && e.key === 'ArrowUp') {
-        // call your function to do the thing
 	var video = document.querySelector('#cam');	
        	video.requestPictureInPicture();
     }
-
 	if (e.ctrlKey && e.key === 'ArrowDown') {
         // call your function to do the thing
 	var video = document.querySelector('#cam');	
@@ -15,6 +11,7 @@ function doc_keyUp(e) {
 }
 
 let add_element = () => {
+	//criação da DIV
     const template = document.createElement('div');
     template.innerHTML = `
 	<style>@keyframes spin { 100% {transform: rotateZ(360deg);}} </style>
@@ -30,9 +27,10 @@ let add_element = () => {
 	<video id="cam"  style="border-radius:50%; object-fit:cover; height:256px; width:256px; margin-top:5px; margin-left:5px;transform: rotateY(180deg);"></video>
 	</div>
     `;
-     document.body.appendChild(template);	// adding element to the body.
+     document.body.appendChild(template);	// adicionando o elemento ao body.
 }
 
+//atribuir a WEBCAM no elemento
 navigator.mediaDevices.getUserMedia({
   video: true
 })
@@ -43,7 +41,7 @@ navigator.mediaDevices.getUserMedia({
   video.play();
 })
 
-
+//Drag&Drop para a DIV
 function dragElement(elmnt) {
 //let dragElement = (elmnt) => {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -54,7 +52,6 @@ function dragElement(elmnt) {
     /* otherwise, move the DIV from anywhere inside the DIV:*/
     elmnt.onmousedown = dragMouseDown;
   }
-  
   
     function dragMouseDown(e) {
     e = e || window.event;
@@ -87,6 +84,7 @@ function dragElement(elmnt) {
   }
   
 }
+//INICIALIZAÇÃO
 add_element();
 dragElement(document.getElementById("mybox"));
 document.addEventListener('keyup', doc_keyUp, false);
